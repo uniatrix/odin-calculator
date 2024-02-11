@@ -2,6 +2,44 @@ let operator = "";
 let previousValue = "";
 let currentValue = "";
 
+document.addEventListener("keydown", function (event) {
+  const key = event.key; // '0' to '9', '-', '+', '*', '/', 'Enter', 'Backspace'
+  if (
+    (key >= "0" && key <= "9") ||
+    key === "-" ||
+    key === "+" ||
+    key === "*" ||
+    key === "/" ||
+    key === "Enter" ||
+    key === "Backspace"
+  ) {
+    // if the key is a number, an operator, 'Enter', or 'Backspace'
+    let buttonClass;
+    if (key >= "0" && key <= "9") {
+      buttonClass = "btn number";
+    } else if (key === "Enter") {
+      buttonClass = "equal";
+    } else if (key === "Backspace") {
+      // Target the clear button by its ID
+      document.getElementById("clear-btn").click();
+      return;
+    } else {
+      buttonClass = "btn operator";
+    }
+    const buttons = document.getElementsByClassName(buttonClass);
+    for (let button of buttons) {
+      if (
+        button.textContent == key ||
+        button.classList.contains("equal") ||
+        button.id == "clear-btn"
+      ) {
+        button.click(); // simulate a click on the button
+        break;
+      }
+    }
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   let clear = document.querySelector("#clear-btn");
   let equal = document.querySelector(".equal");
@@ -73,7 +111,7 @@ function calculate() {
     previousValue += currentValue;
   } else if (operator === "-") {
     previousValue -= currentValue;
-  } else if (operator === "x") {
+  } else if (operator === "*") {
     previousValue *= currentValue;
   } else {
     previousValue /= currentValue;
