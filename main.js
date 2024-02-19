@@ -18,7 +18,7 @@ document.addEventListener("keydown", function (event) {
     if (key >= "0" && key <= "9") {
       buttonClass = "btn number";
     } else if (key === "Enter") {
-      buttonClass = "equal";
+      buttonClass = "btn equal";
     } else if (key === "Backspace") {
       // Target the clear button by its ID
       document.getElementById("clear-btn").click();
@@ -30,7 +30,7 @@ document.addEventListener("keydown", function (event) {
     for (let button of buttons) {
       if (
         button.textContent == key ||
-        button.classList.contains("equal") ||
+        button.classList.contains("btn equal") ||
         button.id == "clear-btn"
       ) {
         button.click(); // simulate a click on the button
