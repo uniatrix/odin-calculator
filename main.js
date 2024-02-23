@@ -19,6 +19,12 @@ document.addEventListener("keydown", function (event) {
       buttonClass = "btn number";
     } else if (key === "Enter") {
       buttonClass = "btn equal";
+
+      // Added code to explicitly click the equal button when Enter is pressed
+      const equalBtn = document.querySelector(".btn.equal");
+      if (equalBtn) {
+        equalBtn.click();
+      }
     } else if (key === "Backspace") {
       // Target the clear button by its ID
       document.getElementById("clear-btn").click();
